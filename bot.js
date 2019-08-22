@@ -94,6 +94,24 @@ client.unload = command => {
     }
   });
 };
+if (message.author.bot) return;
+  if (message.content.includes(`${prefix}afk`)) return;
+  
+  if (message.content.includes(`<@${kullanıcı.id}>`)) {
+    if (afkdkullanıcı) {
+      message.channel.send(`\`${message.author.tag}\` adlı kullanıcı artık AFK değil. :onay:`)
+      db.delete(`afk_${message.author.id}`)
+    }
+    if (afkkullanıcı) return message.channel.send(`${message.author}\`${kullanıcı.tag}\` şuanda \`${sebep}\` yüzünden AFK! :onay:`)
+  }
+
+  if (!message.content.includes(`<@${kullanıcı.id}>`)) {
+    if (afkdkullanıcı) {
+      message.channel.send(`\`${message.author.tag}\` adlı kullanıcı artık AFK değil. :onay:`)
+      db.delete(`afk_${message.author.id}`)
+    }
+  }
+});
 
 
 
